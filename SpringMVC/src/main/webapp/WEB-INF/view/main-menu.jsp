@@ -11,6 +11,12 @@
     <title>Spring MVC DEMO - Home Page</title>
 </head>
 <body>
+
 <h2>Website Home Page</h2>
+
+<hr>
+
+<a href="showForm">Hello World form</a>
+
 </body>
 </html>
