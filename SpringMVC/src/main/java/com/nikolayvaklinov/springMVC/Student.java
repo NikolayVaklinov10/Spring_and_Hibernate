@@ -9,7 +9,7 @@ public class Student {
 
     private String country;
 
-    private LinkedHashMap<String, String> countryOptions;
+    private final LinkedHashMap<String, String> countryOptions;
 
     private String favoriteLanguage;
 
