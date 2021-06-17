@@ -39,7 +39,7 @@ public class Student {
         this.id = id;
     }
 
-    public String getFirstName() {
+    public String getFirstName(String nick) {
         return firstName;
     }
 
