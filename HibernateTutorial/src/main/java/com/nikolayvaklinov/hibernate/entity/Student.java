@@ -1,6 +1,7 @@
 package com.nikolayvaklinov.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -19,6 +20,15 @@ public class Student {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Course> courses;
 
     // no argument constructor
     public Student() {}
@@ -64,6 +74,15 @@ public class Student {
     }
 
     // generate toString method for debugging purposes
+
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
     @Override
     public String toString() {
