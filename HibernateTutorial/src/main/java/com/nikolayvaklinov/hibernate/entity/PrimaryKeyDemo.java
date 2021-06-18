@@ -1,9 +1,7 @@
 package com.nikolayvaklinov.hibernate.entity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.util.List;
 
 public class PrimaryKeyDemo {
 
@@ -26,6 +24,18 @@ public class PrimaryKeyDemo {
                     new Student("Kim", "JonUn", "kim@abv.bg");
            Student tempStudent4;
 
+
+
+            TypedQuery<Student> query =
+                    entityManager.createQuery("SELECT c FROM Student c where c.lastName = 'Vaklinov' ", Student.class);
+            List<Student> results = query.getResultList();
+            tempStudent1.getFirstName("Nick");
+
+            System.out.println("The student record is" + results);
+
+            Student myStudent = entityManager.find(Student.class,5);
+            myStudent.setFirstName("Paolo");
+            entityManager.remove(myStudent);
 
 
             // save the student
