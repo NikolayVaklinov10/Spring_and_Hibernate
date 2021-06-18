@@ -1,5 +1,7 @@
 package com.nikolayvaklinov.hibernate.entity;
 
+import com.nikolayvaklinov.hibernate.Unidirectional.Review;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,11 @@ public class Instructor {
             CascadeType.DETACH,
             CascadeType.REFRESH})
     private List<Course> courses;
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
 
     public Instructor() {}
 
@@ -88,6 +95,22 @@ public class Instructor {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    // add a convenience method
+    public void addReview(Review theReview){
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        reviews.add(theReview);
     }
 
     @Override
